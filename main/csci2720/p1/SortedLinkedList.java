@@ -12,7 +12,9 @@ public class SortedLinkedList {
     public int getLength() {
         int size = 0;
         while (currentPos != null) size++;
+        currentPos = head;
         return size;
+
     } // getLength
 
     public void insertItem(ItemType item) {
