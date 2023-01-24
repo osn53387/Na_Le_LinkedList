@@ -17,7 +17,7 @@ public class SortedLinkedList {
 
     public void insertItem(ItemType item) {
         if (head == null) {
-            head = item;
+            head.info = item;
             currentPos = head;
         } else {
             while (currentPos != null) {
