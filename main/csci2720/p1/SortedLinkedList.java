@@ -1,8 +1,8 @@
 package csci2720.p1;
 
 public class SortedLinkedList {
-    private NodeType head;
-    private NodeType currentPos;
+    public NodeType head;
+    public NodeType currentPos;
 
     public SortedLinkedList() {
         this.head = null;
@@ -11,12 +11,17 @@ public class SortedLinkedList {
 
     public int getLength() {
         int size = 0;
-        while (currentPos != null) size++;
+        while (currentPos != null) {
+            size++;
+            currentPos = currentPos.next;
+        }
+        currentPos = head;
         return size;
     } // getLength
 
     public void insertItem(ItemType item) {
         if (head == null) {
+            head = new NodeType();
             head.info = item;
             currentPos = head;
         } else {
@@ -57,6 +62,7 @@ public class SortedLinkedList {
                     temp.next = currentPos.next;
                     currentPos.next = temp;
                 }
+                currentPos = currentPos.next;
             } // while
         } // else
         currentPos = head;
