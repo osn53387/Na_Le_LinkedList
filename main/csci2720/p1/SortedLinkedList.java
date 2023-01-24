@@ -14,7 +14,7 @@ public class SortedLinkedList {
         while (currentPos != null) {
             size++;
             currentPos = currentPos.next;
-        }
+        } // while
         currentPos = head;
         return size;
 
@@ -63,12 +63,14 @@ public class SortedLinkedList {
                     temp.next = currentPos.next;
                     currentPos.next = temp;
                 } // else
-            }
-                currentPos = currentPos.next;
+                curretPos = currentPos.next;
             } // while
+
         } // else
         currentPos = head;
     } // insertItem
+
+
 
     public void deleteItem(Itemtype item) {
         if (head == null) {
@@ -129,4 +131,13 @@ public class SortedLinkedList {
         currentPos = head;
         System.out.println("Iterator is reset");
     } // resetList
+
+    public void /* int? */ mergeList(SortedLinkedList list1, SortedLinkedList list2) {
+
+        int length1 = list1.getLength();
+        int length2 = list2.getLength();
+
+
+    } // mergeList
+
 } // class
