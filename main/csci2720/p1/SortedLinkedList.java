@@ -51,14 +51,74 @@ public class SortedLinkedList {
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos;
                         head = temp;
-                    } //
+                    } // if
                     NodeType temp = new NodeType();
                     temp.info = new ItemType(item.getValue());
                     temp.next = currentPos.next;
                     currentPos.next = temp;
-                }
+                } // else
             } // while
         } // else
         currentPos = head;
     } // insertItem
+
+    public void deleteItem(Itemtype item) {
+        if (head == null) {
+            System.out,println("You cannot delete from an empty list");
+            break;
+        } else {
+            while (currentPos != null) {
+                if (head.info.getValue() == item.getValue()) {
+                    head = head.next;
+                    // currentPos = head; ?
+                } else if (currentPos.next.info.getValue() != item.getValue()) {
+                    currentPos = currentPos.next;
+                    if (currentPos.next == null) {
+                        System.out.println("Item not found");
+                        break;
+                    } // if
+                } else {
+                    currentPos.next = currentPos.next.next;
+                } // else
+            } // while
+        } // else
+        currentPos = head;
+    } // deleteItem
+
+    public int searchItem(Itemtype item) {
+        int index = 0;
+        if (head == null) {
+            System.out.println("Item not found");
+            break;
+        } // if
+        while (currentPos != null) {
+            if (currentPos.info.getValue() == item.getValue()) {
+                return index;
+            } else {
+                index++;
+                currentPos = currentPos.next;
+                if (currentPos.next == null) {
+                    Systme.out.println("Item not found");
+                } // if
+            } // else
+        } // while
+    } // searchItem
+
+    public Itemtype getNextItem() {
+        if (head == null) {
+            System.out.println("List is empty");
+        } else {
+            if (currentPos.next == null) {
+                System.out.println("The end of the list has been reached");
+            } else {
+                currentPos = currentPos.next;
+                return currentPos.info;
+            } // else
+        } // else
+    } // getNextItem
+
+    public void resetList() {
+        currentPos = head;
+        System.out.println("Iterator is reset");
+    } // resetList
 } // class
