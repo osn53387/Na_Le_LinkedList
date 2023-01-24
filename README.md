@@ -1,1 +1,2 @@
-# Na_Le_LinkedList
+# Sorted Single Linked List
+By: Khoa Le and Owen Na
