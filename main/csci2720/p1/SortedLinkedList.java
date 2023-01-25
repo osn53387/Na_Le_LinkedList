@@ -1,13 +1,30 @@
 package csci2720.p1;
 
 public class SortedLinkedList {
-    public NodeType head;
-    public NodeType currentPos;
+    private NodeType head;
+    private NodeType currentPos;
 
     public SortedLinkedList() {
         this.head = null;
         this.currentPos = null;
     } // SortedLinkedList
+
+    /**
+     * Prints all the elements in the list.
+     */
+    public void printList() {
+        System.out.print("[");
+        while (this.currentPos != null) {
+            if (this.currentPos.next == null) {
+                System.out.print(this.currentPos.info.getValue());
+            } else {
+                System.out.print(this.currentPos.info.getValue() + ", ");
+            } // if-else
+            this.currentPos = this.currentPos.next;
+        } // while
+        System.out.println("]");
+        currentPos = head;
+    } // printList
 
     public int getLength() {
         int size = 0;
@@ -36,6 +53,7 @@ public class SortedLinkedList {
                         temp.info = new ItemType(item.getValue());
                         currentPos.next = temp;
                     } else {
+                        System.out.println("test");
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos;
@@ -57,25 +75,24 @@ public class SortedLinkedList {
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos;
                         head = temp;
-                    } // if
-                    NodeType temp = new NodeType();
-                    temp.info = new ItemType(item.getValue());
-                    temp.next = currentPos.next;
-                    currentPos.next = temp;
+                    } else if (currentPos.info.getValue()  {
+                        NodeType temp = new NodeType();
+                        temp.info = new ItemType(item.getValue());
+                        temp.next = currentPos.next;
+                        currentPos.next = temp;
+                    }
                 } // else
-                curretPos = currentPos.next;
+                currentPos = currentPos.next;
             } // while
-
         } // else
         currentPos = head;
     } // insertItem
 
 
 
-    public void deleteItem(Itemtype item) {
+    public void deleteItem(ItemType item) {
         if (head == null) {
-            System.out,println("You cannot delete from an empty list");
-            break;
+            System.out.println("You cannot delete from an empty list");
         } else {
             while (currentPos != null) {
                 if (head.info.getValue() == item.getValue()) {
@@ -95,11 +112,11 @@ public class SortedLinkedList {
         currentPos = head;
     } // deleteItem
 
-    public int searchItem(Itemtype item) {
+    public int searchItem(ItemType item) {
         int index = 0;
         if (head == null) {
             System.out.println("Item not found");
-            break;
+            return 0;
         } // if
         while (currentPos != null) {
             if (currentPos.info.getValue() == item.getValue()) {
@@ -108,23 +125,27 @@ public class SortedLinkedList {
                 index++;
                 currentPos = currentPos.next;
                 if (currentPos.next == null) {
-                    Systme.out.println("Item not found");
+                    System.out.println("Item not found");
                 } // if
             } // else
         } // while
+        return index;
     } // searchItem
 
-    public Itemtype getNextItem() {
+    public ItemType getNextItem() {
         if (head == null) {
             System.out.println("List is empty");
+            return null;
         } else {
             if (currentPos.next == null) {
                 System.out.println("The end of the list has been reached");
+                return null;
             } else {
                 currentPos = currentPos.next;
                 return currentPos.info;
             } // else
         } // else
+
     } // getNextItem
 
     public void resetList() {

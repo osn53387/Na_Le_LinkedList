@@ -4,17 +4,27 @@ public class LinkedListDriver {
     public static void main(String[] args) {
         SortedLinkedList list = new SortedLinkedList();
         NodeType node = new NodeType();
-        //list.head = new NodeType();
-        //list.currentPos = head;
         node.info = new ItemType(10);
         list.insertItem(node.info);
+        list.printList();
         NodeType node2 = new NodeType();
         node2.info = new ItemType(5);
         list.insertItem(node2.info);
-        //System.out.println(list.getLength());
-        while(list.currentPos != null) {
-            System.out.println(list.currentPos.info.getValue());
-            list.currentPos = list.currentPos.next;
-        } // while
+        list.printList();
+        System.out.println(list.getLength());
+
+        NodeType node3 = new NodeType();
+        NodeType node4 = new NodeType();
+        //NodeType node5 = new NodeType();
+        node3.info = new ItemType(4);
+        node4.info = new ItemType(9);
+        //node5.info = new ItemType(7);
+        list.insertItem(node3.info);
+        //list.printList();
+        list.insertItem(node4.info);
+        //list.insertItem(node5.info);
+        list.printList();
+                //System.out.println(list.getLength());
+        //list.printList();
     } // main
 } // class
