@@ -11,20 +11,12 @@ public class LinkedListDriver {
         node2.info = new ItemType(5);
         list.insertItem(node2.info);
         list.printList();
-        System.out.println(list.getLength());
-
         NodeType node3 = new NodeType();
         NodeType node4 = new NodeType();
-        //NodeType node5 = new NodeType();
         node3.info = new ItemType(4);
         node4.info = new ItemType(9);
-        //node5.info = new ItemType(7);
         list.insertItem(node3.info);
-        //list.printList();
         list.insertItem(node4.info);
-        //list.insertItem(node5.info);
         list.printList();
-                //System.out.println(list.getLength());
-        //list.printList();
     } // main
 } // class

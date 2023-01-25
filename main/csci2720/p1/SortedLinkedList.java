@@ -70,12 +70,14 @@ public class SortedLinkedList {
                     System.out.println("Sorry. You cannot insert the duplicate item.");
                     break;
                 } else {
-                    if (head.info.getValue() == currentPos.info.getValue()) {
+                    if (head.info.getValue() == currentPos.info.getValue()
+                    && currentPos.info.getValue() > item.getValue()) {
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos;
                         head = temp;
-                    } else if (currentPos.info.getValue()  {
+                        break;
+                    } else {
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos.next;
