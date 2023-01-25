@@ -82,12 +82,15 @@ public class SortedLinkedList {
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos.next;
                         currentPos.next = temp;
+
                     }
                 } // else
                 currentPos = currentPos.next;
             } // while
         } // else
         currentPos = head;
+        System.out.println(currentPos.info.getValue());
+        System.out.println(head.info.getValue());
     } // insertItem
 
 
