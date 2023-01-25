@@ -41,7 +41,6 @@ public class SortedLinkedList {
         if (head == null) {
             head = new NodeType();
             head.info = item;
-            currentPos = head;
         } else {
             while (currentPos != null) {
                 if (currentPos.next == null) {
@@ -52,20 +51,15 @@ public class SortedLinkedList {
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         currentPos.next = temp;
+                        break;
                     } else {
-                        System.out.println("test");
+                        //System.out.println(currentPos.info.getValue());
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos;
                         head = temp;
+                        break;
                     } // else
-                } else if (currentPos.next.info.getValue() < item.getValue()) {
-                    currentPos = currentPos.next;
-                    if (currentPos.next == null) {
-                        NodeType temp = new NodeType();
-                        temp.info = new ItemType(item.getValue());
-                        currentPos.next = temp;
-                    }
                 } else if (currentPos.info.getValue() == item.getValue()) {
                     System.out.println("Sorry. You cannot insert the duplicate item.");
                     break;
@@ -82,15 +76,16 @@ public class SortedLinkedList {
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos.next;
                         currentPos.next = temp;
-
+                        break;
                     }
                 } // else
                 currentPos = currentPos.next;
+                System.out.println(currentPos.info.getValue());
             } // while
         } // else
         currentPos = head;
-        System.out.println(currentPos.info.getValue());
-        System.out.println(head.info.getValue());
+        //System.out.println(currentPos.info.getValue());
+        //System.out.println(head.info.getValue());
     } // insertItem
 
 

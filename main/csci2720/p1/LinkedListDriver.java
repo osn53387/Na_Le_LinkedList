@@ -16,7 +16,8 @@ public class LinkedListDriver {
         node3.info = new ItemType(4);
         node4.info = new ItemType(9);
         list.insertItem(node3.info);
-        list.insertItem(node4.info);
         list.printList();
+        list.insertItem(node4.info);
+
     } // main
 } // class
