@@ -8,7 +8,7 @@ public class LinkedListDriver {
         list.insertItem(node.info);
         list.printList();
         NodeType node2 = new NodeType();
-        node2.info = new ItemType(5);
+        node2.info = new ItemType(12);
         list.insertItem(node2.info);
         list.printList();
         NodeType node3 = new NodeType();
@@ -18,6 +18,10 @@ public class LinkedListDriver {
         list.insertItem(node3.info);
         list.printList();
         list.insertItem(node4.info);
-
+        list.printList();
+        NodeType node5 = new NodeType();
+        node5.info = new ItemType(11);
+        list.insertItem(node5.info);
+        list.printList();
     } // main
 } // class
