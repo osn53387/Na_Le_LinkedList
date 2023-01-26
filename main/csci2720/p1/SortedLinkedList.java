@@ -41,6 +41,7 @@ public class SortedLinkedList {
         if (head == null) {
             head = new NodeType();
             head.info = item;
+            currentPos = head;
         } else {
             while (currentPos != null) {
                 if (currentPos.next == null) {
@@ -71,41 +72,52 @@ public class SortedLinkedList {
                         temp.next = currentPos;
                         head = temp;
                         break;
-                    } else {
+                    } else if (currentPos.info.getValue() < item.getValue()
+                    && currentPos.next.info.getValue() > item.getValue()) {
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos.next;
                         currentPos.next = temp;
                         break;
+                    } else {
+                        currentPos = currentPos.next;
                     }
                 } // else
-                currentPos = currentPos.next;
-                System.out.println(currentPos.info.getValue());
             } // while
         } // else
         currentPos = head;
-        //System.out.println(currentPos.info.getValue());
-        //System.out.println(head.info.getValue());
     } // insertItem
 
-
-
     public void deleteItem(ItemType item) {
-        if (head == null) {
+        if (head == null) { // delete from empty list case
             System.out.println("You cannot delete from an empty list");
         } else {
+<<<<<<< HEAD
             while (currentPos.info != null) {
                 if (head.info.getValue() == item.getValue()) {
+=======
+            while (currentPos != null) {
+                if (currentPos.info.getValue() == head.info.getValue()
+                && currentPos.info.getValue() == item.getValue()) { // delete first element
+>>>>>>> a1cac62b3ac63220ec113f1c6d5454b867d4818f
                     head = head.next;
-                    // currentPos = head; ?
+                    break;
+                } else if (currentPos.next == null) {
+                    if (currentPos.info.getValue() == item.getValue()) {
+                        head = null;
+                    } else {
+                        System.out.println("Item not found");
+                    }
+                    break;
                 } else if (currentPos.next.info.getValue() != item.getValue()) {
                     currentPos = currentPos.next;
-                    if (currentPos.next == null) {
+                    if (currentPos.next == null) { // cannot find element
                         System.out.println("Item not found");
                         break;
-                    } // if
-                } else {
+                    }
+                } else if (currentPos.next.info.getValue() == item.getValue()) { // last elem
                     currentPos.next = currentPos.next.next;
+                    break;
                 } // else
             } // while
         } // else
@@ -116,7 +128,7 @@ public class SortedLinkedList {
         int index = 0;
         if (head == null) {
             System.out.println("Item not found");
-            return 0;
+            return index;
         } // if
         while (currentPos != null) {
             if (currentPos.info.getValue() == item.getValue()) {
@@ -124,12 +136,10 @@ public class SortedLinkedList {
             } else {
                 index++;
                 currentPos = currentPos.next;
-                if (currentPos.next == null) {
-                    System.out.println("Item not found");
-                } // if
             } // else
         } // while
-        return index;
+        System.out.println("Item not found");
+        return 0;
     } // searchItem
 
     public ItemType getNextItem() {
