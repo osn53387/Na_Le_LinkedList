@@ -150,10 +150,10 @@ public class SortedLinkedList {
                 return currentPos.info;
             } // else
         } // else
-
     } // getNextItem
 
     public void resetList() {
+        head = null;
         currentPos = head;
         System.out.println("Iterator is reset");
     } // resetList
@@ -166,7 +166,7 @@ public class SortedLinkedList {
 
     } // mergeList
 
-
+    /*
     public void deleteAltNodes(SortedLinkedList list) {
         if (list.getLength() == 0) {
             System.out.println("\nThe list is empty");
@@ -189,6 +189,8 @@ public class SortedLinkedList {
         } // else
     } // deleteAtlNodes
 
+    */
+    /*
     public void intersection(SortedLinkedList list1, SortedLinkedList list2) {
         if (list1.getLength() == 0 || list2.getLength() == 0) {
             break;
@@ -205,7 +207,8 @@ public class SortedLinkedList {
             }
         }
     } // intersection
-
+    */
+    /*
     public void sortLinkedList() {
         currentPos = head;
         NodeType comparingPointer = new NodeType();
@@ -213,9 +216,9 @@ public class SortedLinkedList {
         if (head == null) {
             return;
         } else {
-            while (currrentPos.info != null) {
+            while (currentPos.info != null) {
                 comparingPointer = currentPos.next;
-                while {
+                while (true) { // placeholder
                     if (currentPos.info.getValue() > comparingPointer.info.getValue()) {
                         data = currentPos.info.getValue();
                         currentPos.info = comparingPointer.info;
@@ -227,4 +230,5 @@ public class SortedLinkedList {
             } // while
         } // else
     } // sortLinkedList
+    */
 } // class
