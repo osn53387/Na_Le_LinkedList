@@ -92,14 +92,9 @@ public class SortedLinkedList {
         if (head == null) { // delete from empty list case
             System.out.println("You cannot delete from an empty list");
         } else {
-<<<<<<< HEAD
-            while (currentPos.info != null) {
-                if (head.info.getValue() == item.getValue()) {
-=======
             while (currentPos != null) {
                 if (currentPos.info.getValue() == head.info.getValue()
                 && currentPos.info.getValue() == item.getValue()) { // delete first element
->>>>>>> a1cac62b3ac63220ec113f1c6d5454b867d4818f
                     head = head.next;
                     break;
                 } else if (currentPos.next == null) {
