@@ -94,7 +94,7 @@ public class SortedLinkedList {
         if (head == null) {
             System.out.println("You cannot delete from an empty list");
         } else {
-            while (currentPos != null) {
+            while (currentPos.info != null) {
                 if (head.info.getValue() == item.getValue()) {
                     head = head.next;
                     // currentPos = head; ?
@@ -161,4 +161,65 @@ public class SortedLinkedList {
 
     } // mergeList
 
+
+    public void deleteAltNodes(SortedLinkedList list) {
+        if (list.getLength() == 0) {
+            System.out.println("\nThe list is empty");
+        } else {
+            currentPos = head; // is it list.head?
+            SortedLinkedList outputList = new SortedLinkedList();
+            if (list.currentPos.info.next.getValue() == null) {
+                NodeType temp = new NodeType(list.currentPos.info.getValue());
+                outputList.insertItem(temp.info);
+            }
+            while (list.currentPos.info.next.getValue() != null) {
+                NodeType temp = new NodeType(list.currentPos.info.getValue());
+                outputList.insertItem(temp.info);
+                if (currentPos.next.next == null) {
+                    break;
+                } else {
+                    currentPost = currentPos.next.next;
+                } // else
+            } // while
+        } // else
+    } // deleteAtlNodes
+
+    public void intersection(SortedLinkedList list1, SortedLinkedList list2) {
+        if (list1.getLength() == 0 || list2.getLength() == 0) {
+            break;
+        } else {
+            SortedLinkedList outputList = new SortedLinkedList();
+            list1.sortLinkedList();
+            list2.sortLinkedList();
+            for (int i = 0; i < list1.getLength(); i++) {
+                for (int j = 0; j < list2.getLength(); j++) {
+                    if (list1.info.getValue() == list2.info.getValue()) {
+                        // need help
+                    }
+                }
+            }
+        }
+    } // intersection
+
+    public void sortLinkedList() {
+        currentPos = head;
+        NodeType comparingPointer = new NodeType();
+        int data;
+        if (head == null) {
+            return;
+        } else {
+            while (currrentPos.info != null) {
+                comparingPointer = currentPos.next;
+                while {
+                    if (currentPos.info.getValue() > comparingPointer.info.getValue()) {
+                        data = currentPos.info.getValue();
+                        currentPos.info = comparingPointer.info;
+                        comparingPointer.info = new ItemType(data);
+                    } // if
+                    comparingPointer = comparingPointer.next;
+                } // whilse
+                currentPos = currentPos.next;
+            } // while
+        } // else
+    } // sortLinkedList
 } // class
