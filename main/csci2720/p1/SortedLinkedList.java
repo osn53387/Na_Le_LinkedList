@@ -88,24 +88,31 @@ public class SortedLinkedList {
         currentPos = head;
     } // insertItem
 
-
-
     public void deleteItem(ItemType item) {
-        if (head == null) {
+        if (head == null) { // delete from empty list case
             System.out.println("You cannot delete from an empty list");
         } else {
             while (currentPos != null) {
-                if (head.info.getValue() == item.getValue()) {
+                if (currentPos.info.getValue() == head.info.getValue()
+                && currentPos.info.getValue() == item.getValue()) { // delete first element
                     head = head.next;
-                    // currentPos = head; ?
+                    break;
+                } else if (currentPos.next == null) {
+                    if (currentPos.info.getValue() == item.getValue()) {
+                        head = null;
+                    } else {
+                        System.out.println("Item not found");
+                    }
+                    break;
                 } else if (currentPos.next.info.getValue() != item.getValue()) {
                     currentPos = currentPos.next;
-                    if (currentPos.next == null) {
+                    if (currentPos.next == null) { // cannot find element
                         System.out.println("Item not found");
                         break;
-                    } // if
-                } else {
+                    }
+                } else if (currentPos.next.info.getValue() == item.getValue()) { // last elem
                     currentPos.next = currentPos.next.next;
+                    break;
                 } // else
             } // while
         } // else
@@ -116,7 +123,7 @@ public class SortedLinkedList {
         int index = 0;
         if (head == null) {
             System.out.println("Item not found");
-            return 0;
+            return index;
         } // if
         while (currentPos != null) {
             if (currentPos.info.getValue() == item.getValue()) {
@@ -124,12 +131,10 @@ public class SortedLinkedList {
             } else {
                 index++;
                 currentPos = currentPos.next;
-                if (currentPos.next == null) {
-                    System.out.println("Item not found");
-                } // if
             } // else
         } // while
-        return index;
+        System.out.println("Item not found");
+        return 0;
     } // searchItem
 
     public ItemType getNextItem() {

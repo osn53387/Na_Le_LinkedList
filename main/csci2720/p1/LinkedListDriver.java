@@ -23,5 +23,8 @@ public class LinkedListDriver {
         node5.info = new ItemType(11);
         list.insertItem(node5.info);
         list.printList();
+        list.deleteItem(new ItemType(9));
+        list.printList();
+        System.out.println(list.searchItem(new ItemType(4)));
     } // main
 } // class
