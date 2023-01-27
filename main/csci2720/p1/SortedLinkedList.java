@@ -206,80 +206,30 @@ public class SortedLinkedList {
     } // deleteAtlNodes
 
 
-    /*
+
     public SortedLinkedList intersection(SortedLinkedList original, SortedLinkedList list2) {
-        if (list1.getLength() == 0 || list2.getLength() == 0) {
-            break;
+        if (original.getLength() == 0 || list2.getLength() == 0) {
+            return new SortedLinkedList();
         } else {
+            SortedLinkedList intersectedList = new SortedLinkedList();
             SortedLinkedList temp = new SortedLinkedList();
-            SortedLinkedList outputList = new SortedLinkedList();
-            while (list2.currentPos != null) {
-                temp.insertItem(list2.currentPos.info);
-                currentPos = currentPos.next;
+            temp.head = list2.head;
+            while (original.currentPos != null) {
+                while(temp.head != null) {
+                    if (original.currentPos.info.getValue() == temp.head.info.getValue()) {
+                        try {
+                            intersectedList.insertItem(new ItemType(temp.head.info.getValue()));
+                        } catch (Exception e) {}
+                    }
+                    temp.head = temp.head.next;
+                } // while
+                temp.head = list2.head;
+                original.currentPos = original.currentPos.next;
             } // while
             currentPos = head;
-            /*
-            if (temp.getLength() < original.getLength()) {
-                while (temp.currentPos != null) {
-                    while (original.currentPos != null {
-                           if (temp.currentPos.info.getValue() == original.currentPos.info.getValue()) {
-                               outputList.insertItem(temp.currentPos.info);
-                           } else {
-                               currentPos = currentPos.next;
-                           } // else
-                    } // while
-                } // while
-                return outputList;
-            } else if (temp.getLength() > original.getLength()) {
-                    while (original.currentPos != null) {
-                        while (temp.currentPos != null {
-                           if (original.currentPos.info.getValue() == temp.currentPos.info.getValue()) {
-                               outputList.insertItem(original.currentPos.info);
-                           } else {
-                               currentPos = currentPos.next;
-                           } // else
-                    } // while
-                } // while
-                return outputList;
-            } else {
-                */
-    /*
-                 while (original.currentPos != null) {
-                     while (temp.currentPos != null) {
-                           if (original.currentPos.info.getValue() == temp.currentPos.info.getValue()) {
-                               outputList.insertItem(original.currentPos.info);
-                           } else {
-                               currentPos = currentPos.next;
-                           } // else
-                           temp.currentPos = head;
-                           original.currentPos = original.currentPos.next;
-                    } // while
-                } // while
-                return outputList;
+            return intersectedList;
+
         } // intersection
     }
-    */
-    /*
-    public void sortLinkedList() {
-        currentPos = head;
-        NodeType comparingPointer = new NodeType();
-        int data;
-        if (head == null) {
-            return;
-        } else {
-            while (currentPos.info != null) {
-                comparingPointer = currentPos.next;
-                while (true) { // placeholder
-                    if (currentPos.info.getValue() > comparingPointer.info.getValue()) {
-                        data = currentPos.info.getValue();
-                        currentPos.info = comparingPointer.info;
-                        comparingPointer.info = new ItemType(data);
-                    } // if
-                    comparingPointer = comparingPointer.next;
-                } // whilse
-                currentPos = currentPos.next;
-            } // while
-        } // else
-    } // sortLinkedList
-    */
-    } // class
+
+} // class

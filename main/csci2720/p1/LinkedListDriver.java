@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class LinkedListDriver {
     public static void main(String[] args) {
         SortedLinkedList list = new SortedLinkedList();
+        SortedLinkedList tempList = new SortedLinkedList();
         Scanner stdIn = new Scanner(System.in);
         for (int i = 0; i < args.length; i++) {
             int temp = Integer.parseInt(args[i]);
@@ -18,6 +19,7 @@ public class LinkedListDriver {
         char command = stdIn.nextLine().charAt(0);
         ItemType itemtype = new ItemType(0);
         while (!(command == ('q'))) {
+            boolean valid = true;
             switch (command) {
             case 'p':
                 System.out.print("The list is: ");
@@ -70,7 +72,7 @@ public class LinkedListDriver {
             case 'a':
                 System.out.print("Original list: ");
                 list.printList();
-                SortedLinkedList tempList = list.deleteAltNodes(list);
+                tempList = list.deleteAltNodes(list);
                 System.out.print("Modified list: ");
                 tempList.printList();
                 break;
@@ -93,10 +95,31 @@ public class LinkedListDriver {
                 list.printList();
                 stdIn.nextLine();
                 break;
+            case 't':
+                System.out.print("Enter the length of the new list: ");
+                int listLength = stdIn.nextInt();
+                System.out.print("Enter the numbers: ");
+                tempList = new SortedLinkedList();
+                for (int i = 0; i < listLength; i++) {
+                    try {
+                        tempList.insertItem(new ItemType(stdIn.nextInt()));
+                    } catch (Exception e ) {}
+                } // for
+                System.out.print("The list 1: ");
+                list.printList();
+                System.out.print("The list 2: ");
+                tempList.printList();
+                System.out.print("Intersection of lists: ");
+                SortedLinkedList intersectedList = list.intersection(list, tempList);
+                intersectedList.printList();
+                stdIn.nextLine();
+                break;
             default:
+                valid = false;
                 break;
             } //switch
-            System.out.print("Enter a command: ");
+            if (valid) System.out.print("Enter a command: ");
+            else System.out.print("Invalid command try again: ");
             command = stdIn.nextLine().charAt(0);
         } // while
     } // main
