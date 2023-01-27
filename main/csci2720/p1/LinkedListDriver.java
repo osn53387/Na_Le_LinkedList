@@ -55,13 +55,35 @@ public class LinkedListDriver {
                 } // else
                 break;
             case 'n':
-                /*
-                if (list.getNextItem() != null)
-                    System.out.println(list.getNextItem().getValue());
-                else:
-                    System.out.println("End of list has been reached");
-                */
                 System.out.println(list.getNextItem().getValue());
+                break;
+            case 'r':
+                list.resetList();
+                System.out.println("Iterator is reset");
+                break;
+            case 'a':
+                System.out.print("Original list: ");
+                list.printList();
+                SortedLinkedList tempList = list.deleteAltNodes(list);
+                System.out.print("Modified list: ");
+                tempList.printList();
+                break;
+            case 'm':
+                System.out.print("Enter the length of the new list: ");
+                int length = stdIn.nextInt();
+                System.out.print("Enter the numbers: ");
+                SortedLinkedList list2 = new SortedLinkedList();
+                for (int i = 0; i < length; i++) {
+                    list2.insertItem(new ItemType(stdIn.nextInt()));
+                } // for
+                System.out.print("The list 1: ");
+                list.printList();
+                System.out.print("The list 2: ");
+                list2.printList();
+                list = list.mergeList(list, list2);
+                System.out.print("Merged list: ");
+                list.printList();
+                stdIn.nextLine();
                 break;
             default:
                 break;

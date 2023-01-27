@@ -153,43 +153,50 @@ public class SortedLinkedList {
     } // getNextItem
 
     public void resetList() {
-        head = null;
         currentPos = head;
-        System.out.println("Iterator is reset");
     } // resetList
 
-    public void /* int? */ mergeList(SortedLinkedList list1, SortedLinkedList list2) {
-
-        int length1 = list1.getLength();
-        int length2 = list2.getLength();
-
-
+    public SortedLinkedList mergeList(SortedLinkedList original, SortedLinkedList list2) {
+        while (list2.head != null) {
+            original.insertItem(list2.head.info);
+            list2.head = list2.head.next;
+        }
+        head = original.head;
+        return original;
     } // mergeList
 
-    /*
-    public void deleteAltNodes(SortedLinkedList list) {
-        if (list.getLength() == 0) {
-            System.out.println("\nThe list is empty");
+
+    public SortedLinkedList deleteAltNodes(SortedLinkedList list) {
+        if (head == null) {
+            System.out.println("The list is empty");
+            return null;
         } else {
-            currentPos = head; // is it list.head?
+            currentPos = head;
             SortedLinkedList outputList = new SortedLinkedList();
-            if (list.currentPos.info.next.getValue() == null) {
-                NodeType temp = new NodeType(list.currentPos.info.getValue());
-                outputList.insertItem(temp.info);
-            }
-            while (list.currentPos.info.next.getValue() != null) {
-                NodeType temp = new NodeType(list.currentPos.info.getValue());
-                outputList.insertItem(temp.info);
-                if (currentPos.next.next == null) {
-                    break;
-                } else {
-                    currentPost = currentPos.next.next;
-                } // else
-            } // while
-        } // else
+            if (currentPos.next == null) { // the only element in the list
+                outputList.insertItem(currentPos.info);
+            } else if (currentPos.next.next == null) {
+                outputList.insertItem(currentPos.info);
+            } else {
+                while (currentPos.next.next != null) {
+                    outputList.insertItem(currentPos.info);
+                    currentPos = currentPos.next.next;
+                    if (currentPos.next == null) {
+                        outputList.insertItem(currentPos.info);
+                        break;
+                    } else if (currentPos.next.next == null) {
+                        outputList.insertItem(currentPos.info);
+                        break;
+                    } // if-else
+                } // while
+            } // else
+            head = outputList.head;
+            currentPos = head;
+            return outputList;
+        }
+
     } // deleteAtlNodes
 
-    */
     /*
     public void intersection(SortedLinkedList list1, SortedLinkedList list2) {
         if (list1.getLength() == 0 || list2.getLength() == 0) {
