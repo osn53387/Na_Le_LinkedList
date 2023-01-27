@@ -10,7 +10,9 @@ public class LinkedListDriver {
             int temp = Integer.parseInt(args[i]);
             NodeType node = new NodeType();
             node.info = new ItemType(temp);
+            try {
             list.insertItem(node.info);
+            } catch (Exception e) {}
         } // for
         System.out.print("Enter a command: ");
         char command = stdIn.nextLine().charAt(0);
@@ -27,7 +29,11 @@ public class LinkedListDriver {
                 itemtype = new ItemType(item);
                 System.out.print("Original list: ");
                 list.printList();
-                list.insertItem(itemtype);
+                try {
+                    list.insertItem(itemtype);
+                } catch (Exception e) {
+                    System.out.println("Sorry. You cannot insert the duplicate item");
+                } // catch
                 System.out.print("New list: ");
                 list.printList();
                 break;
@@ -74,7 +80,9 @@ public class LinkedListDriver {
                 System.out.print("Enter the numbers: ");
                 SortedLinkedList list2 = new SortedLinkedList();
                 for (int i = 0; i < length; i++) {
-                    list2.insertItem(new ItemType(stdIn.nextInt()));
+                    try {
+                        list2.insertItem(new ItemType(stdIn.nextInt()));
+                    } catch (Exception e ) {}
                 } // for
                 System.out.print("The list 1: ");
                 list.printList();

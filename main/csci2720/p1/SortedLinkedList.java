@@ -33,7 +33,7 @@ public class SortedLinkedList {
 
     } // getLength
 
-    public void insertItem(ItemType item) {
+    public void insertItem(ItemType item) throws Exception {
         if (head == null) {
             head = new NodeType();
             head.info = item;
@@ -42,15 +42,16 @@ public class SortedLinkedList {
             while (currentPos != null) {
                 if (currentPos.next == null) {
                     if (currentPos.info.getValue() == item.getValue()) {
-                        System.out.println("Sorry. You cannot insert the duplicate item.");
-                        break;
+                        //System.out.println("Sorry. You cannot insert the duplicate item.");
+                        currentPos = head;
+                        throw new Exception();
+                        //break;
                     } else if (currentPos.info.getValue() < item.getValue()) {
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         currentPos.next = temp;
                         break;
                     } else {
-                        //System.out.println(currentPos.info.getValue());
                         NodeType temp = new NodeType();
                         temp.info = new ItemType(item.getValue());
                         temp.next = currentPos;
@@ -58,8 +59,10 @@ public class SortedLinkedList {
                         break;
                     } // else
                 } else if (currentPos.info.getValue() == item.getValue()) {
-                    System.out.println("Sorry. You cannot insert the duplicate item.");
-                    break;
+                    //System.out.println("Sorry. You cannot insert the duplicate item.");
+                    currentPos = head;
+                    throw new Exception();
+                    //break;
                 } else {
                     if (head.info.getValue() == currentPos.info.getValue()
                     && currentPos.info.getValue() > item.getValue()) {
@@ -158,7 +161,9 @@ public class SortedLinkedList {
 
     public SortedLinkedList mergeList(SortedLinkedList original, SortedLinkedList list2) {
         while (list2.head != null) {
-            original.insertItem(list2.head.info);
+            try {
+                original.insertItem(list2.head.info);
+            } catch (Exception e) {} // catch
             list2.head = list2.head.next;
         }
         head = original.head;
@@ -173,23 +178,26 @@ public class SortedLinkedList {
         } else {
             currentPos = head;
             SortedLinkedList outputList = new SortedLinkedList();
-            if (currentPos.next == null) { // the only element in the list
-                outputList.insertItem(currentPos.info);
-            } else if (currentPos.next.next == null) {
-                outputList.insertItem(currentPos.info);
-            } else {
-                while (currentPos.next.next != null) {
+            try {
+                if (currentPos.next == null) { // the only element in the list
                     outputList.insertItem(currentPos.info);
-                    currentPos = currentPos.next.next;
-                    if (currentPos.next == null) {
+                } else if (currentPos.next.next == null) {
+                    outputList.insertItem(currentPos.info);
+                } else {
+                    while (currentPos.next.next != null) {
                         outputList.insertItem(currentPos.info);
-                        break;
-                    } else if (currentPos.next.next == null) {
-                        outputList.insertItem(currentPos.info);
-                        break;
-                    } // if-else
-                } // while
-            } // else
+                        currentPos = currentPos.next.next;
+                        if (currentPos.next == null) {
+                            outputList.insertItem(currentPos.info);
+                            break;
+                        } else if (currentPos.next.next == null) {
+                            outputList.insertItem(currentPos.info);
+                            break;
+                        } // if-else
+                    } // while
+                } // else
+            } catch (Exception e) {
+            } // catch
             head = outputList.head;
             currentPos = head;
             return outputList;
@@ -197,7 +205,8 @@ public class SortedLinkedList {
 
     } // deleteAtlNodes
 
-    
+
+    /*
     public SortedLinkedList intersection(SortedLinkedList original, SortedLinkedList list2) {
         if (list1.getLength() == 0 || list2.getLength() == 0) {
             break;
@@ -220,7 +229,7 @@ public class SortedLinkedList {
                            } // else
                     } // while
                 } // while
-                return outputList;           
+                return outputList;
             } else if (temp.getLength() > original.getLength()) {
                     while (original.currentPos != null) {
                         while (temp.currentPos != null {
@@ -234,8 +243,9 @@ public class SortedLinkedList {
                 return outputList;
             } else {
                 */
+    /*
                  while (original.currentPos != null) {
-                        while (temp.currentPos != null {
+                     while (temp.currentPos != null) {
                            if (original.currentPos.info.getValue() == temp.currentPos.info.getValue()) {
                                outputList.insertItem(original.currentPos.info);
                            } else {
@@ -247,7 +257,8 @@ public class SortedLinkedList {
                 } // while
                 return outputList;
         } // intersection
-    
+    }
+    */
     /*
     public void sortLinkedList() {
         currentPos = head;
@@ -271,4 +282,4 @@ public class SortedLinkedList {
         } // else
     } // sortLinkedList
     */
-} // class
+    } // class
