@@ -13,17 +13,13 @@ public class SortedLinkedList {
      * Prints all the elements in the list.
      */
     public void printList() {
-        System.out.print("[");
+        System.out.print("  ");
         while (this.currentPos != null) {
-            if (this.currentPos.next == null) {
-                System.out.print(this.currentPos.info.getValue());
-            } else {
-                System.out.print(this.currentPos.info.getValue() + ", ");
-            } // if-else
+            System.out.print(this.currentPos.info.getValue() + " ");
             this.currentPos = this.currentPos.next;
         } // while
-        System.out.println("]");
         currentPos = head;
+        System.out.println();
     } // printList
 
     public int getLength() {
@@ -123,18 +119,19 @@ public class SortedLinkedList {
         int index = 0;
         if (head == null) {
             System.out.println("Item not found");
-            return index;
+            return -1;
         } // if
         while (currentPos != null) {
             if (currentPos.info.getValue() == item.getValue()) {
+                currentPos = head;
                 return index;
             } else {
                 index++;
                 currentPos = currentPos.next;
             } // else
         } // while
-        System.out.println("Item not found");
-        return 0;
+        currentPos = head;
+        return -1;
     } // searchItem
 
     public ItemType getNextItem() {
@@ -142,12 +139,15 @@ public class SortedLinkedList {
             System.out.println("List is empty");
             return null;
         } else {
-            if (currentPos.next == null) {
-                System.out.println("The end of the list has been reached");
-                return null;
-            } else {
+            if (currentPos == null) {
+                currentPos = head;
+                ItemType temp = new ItemType(currentPos.info.getValue());
                 currentPos = currentPos.next;
-                return currentPos.info;
+                return temp;
+            } else {
+                ItemType temp = new ItemType(currentPos.info.getValue());
+                currentPos = currentPos.next;
+                return temp;
             } // else
         } // else
     } // getNextItem
