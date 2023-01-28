@@ -1,31 +1,59 @@
 package csci2720.p1;
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
+/**
+ * The main driver class to test SortedLinkedList class.
+ */
 public class LinkedListDriver {
+
+    /**
+     * The main method.
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
+        System.out.println("Commands:");
+        System.out.println("(i) - Insert value");
+        System.out.println("(d) - Delete value");
+        System.out.println("(s) - Search value");
+        System.out.println("(n) - Print next iterator value");
+        System.out.println("(r) - Reset iterator");
+        System.out.println("(a) - Delete alternate nodes");
+        System.out.println("(m) - Merge lists");
+        System.out.println("(t) - Find intersection");
+        System.out.println("(p) - Print list");
+        System.out.println("(l) - Print length");
+        System.out.println("(q) - Quit program");
         SortedLinkedList list = new SortedLinkedList();
         SortedLinkedList tempList = new SortedLinkedList();
         Scanner stdIn = new Scanner(System.in);
-        for (int i = 0; i < args.length; i++) {
-            int temp = Integer.parseInt(args[i]);
-            NodeType node = new NodeType();
-            node.info = new ItemType(temp);
-            try {
-            list.insertItem(node.info);
-            } catch (Exception e) {}
-        } // for
+        try {
+            File file = new File(args[0]);
+            Scanner fileReader = new Scanner(file);
+            while (fileReader.hasNext()) {
+                NodeType node = new NodeType();
+                node.info = new ItemType(Integer.parseInt(fileReader.next()));
+                try {
+                    list.insertItem(node.info);
+                } catch (Exception e) {} // catch
+            } // while
+        } catch (FileNotFoundException fnfe) {
+            System.err.println(fnfe);
+            System.exit(1);
+        } // catch
         System.out.print("Enter a command: ");
-        char command = stdIn.nextLine().charAt(0);
+        String command = stdIn.nextLine();
         ItemType itemtype = new ItemType(0);
-        while (!(command == ('q'))) {
+        while (!command.equals("q")) {
             boolean valid = true;
             switch (command) {
-            case 'p':
+            case "p": // print list
                 System.out.print("The list is: ");
                 list.printList();
                 break;
-            case 'i':
+            case "i": // insert item
                 System.out.print("Enter a number to insert: ");
                 int item = Integer.parseInt(stdIn.nextLine());
                 itemtype = new ItemType(item);
@@ -39,7 +67,7 @@ public class LinkedListDriver {
                 System.out.print("New list: ");
                 list.printList();
                 break;
-            case 'd':
+            case "d": // delete item
                 System.out.print("Enter a number to delete: ");
                 itemtype = new ItemType(Integer.parseInt(stdIn.nextLine()));
                 System.out.print("Original list: ");
@@ -48,10 +76,10 @@ public class LinkedListDriver {
                 System.out.print("New list: ");
                 list.printList();
                 break;
-            case 'l':
+            case "l": // print length of list
                 System.out.print("The length of the list is " + list.getLength() + "\n");
                 break;
-            case 's':
+            case "s": // search item
                 System.out.print("Enter a number to search: ");
                 itemtype = new ItemType(Integer.parseInt(stdIn.nextLine()));
                 System.out.print("Original list: ");
@@ -62,21 +90,21 @@ public class LinkedListDriver {
                     System.out.println("The item is present at index " + list.searchItem(itemtype));
                 } // else
                 break;
-            case 'n':
-                System.out.println(list.getNextItem().getValue());
+            case "n": // get next item
+                list.getNextItem();
                 break;
-            case 'r':
+            case "r": // reset iterator
                 list.resetList();
                 System.out.println("Iterator is reset");
                 break;
-            case 'a':
+            case "a": // delete alternate nodes
                 System.out.print("Original list: ");
                 list.printList();
                 tempList = list.deleteAltNodes(list);
                 System.out.print("Modified list: ");
                 tempList.printList();
                 break;
-            case 'm':
+            case "m": // merge list
                 System.out.print("Enter the length of the new list: ");
                 int length = stdIn.nextInt();
                 System.out.print("Enter the numbers: ");
@@ -95,7 +123,7 @@ public class LinkedListDriver {
                 list.printList();
                 stdIn.nextLine();
                 break;
-            case 't':
+            case "t": // intersection
                 System.out.print("Enter the length of the new list: ");
                 int listLength = stdIn.nextInt();
                 System.out.print("Enter the numbers: ");
@@ -114,13 +142,13 @@ public class LinkedListDriver {
                 intersectedList.printList();
                 stdIn.nextLine();
                 break;
-            default:
+            default: // invalid command
                 valid = false;
                 break;
             } //switch
             if (valid) System.out.print("Enter a command: ");
             else System.out.print("Invalid command try again: ");
-            command = stdIn.nextLine().charAt(0);
+            command = stdIn.nextLine();
         } // while
     } // main
 } // class
