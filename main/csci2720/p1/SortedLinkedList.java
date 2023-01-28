@@ -139,7 +139,7 @@ public class SortedLinkedList {
      * @return the index of the item
      */
     public int searchItem(ItemType item) {
-        int index = 0;
+        int index = 1;
         if (head == null) {
             System.out.println("Item not found");
             return -1; // placeholder for nonexisting item
@@ -163,7 +163,7 @@ public class SortedLinkedList {
      */
     public ItemType getNextItem() {
         if (head == null) {
-            System.out.println("List is empty");
+            System.out.println("The list is empty");
             return null;
         } else {
             if (currentPos == null) { // reset currentPos if end of list has been reached
@@ -195,14 +195,14 @@ public class SortedLinkedList {
      * @return the merge list
      */
     public SortedLinkedList mergeList(SortedLinkedList original, SortedLinkedList list2) {
-        while (list2.head != null) {
+        while (original.currentPos != null) {
             try {
-                original.insertItem(list2.head.info);
+                list2.insertItem(original.currentPos.info);
             } catch (Exception e) {} // catch
-            list2.head = list2.head.next;
+            original.currentPos= original.currentPos.next;
         }
-        head = original.head;
-        return original;
+        currentPos = head;
+        return list2;
     } // mergeList
 
     /**
@@ -213,7 +213,7 @@ public class SortedLinkedList {
     public SortedLinkedList deleteAltNodes(SortedLinkedList list) {
         if (head == null) { // The empty list
             System.out.println("The list is empty");
-            return null;
+            return new SortedLinkedList();
         } else {
             currentPos = head;
             SortedLinkedList outputList = new SortedLinkedList();
